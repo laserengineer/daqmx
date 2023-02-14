@@ -27,9 +27,9 @@ The testing that will occur will look something like this:
 import pytest
 from daqmx import NIDAQmxInstrument
 
-device_name = 'Dev3'
-device_serial_number = '1b5d996'
-device_model_number = 'USB-6001'
+device_name = 'Dev1'
+#device_serial_number = '1b5d996'
+#device_model_number = 'USB-6001'
 
 
 @pytest.fixture

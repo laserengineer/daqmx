@@ -11,7 +11,7 @@ from daqmx import NIDAQmxInstrument, AnalogInput
 # allocation available to the instrument; this is safe when there
 # is only one NIDAQmx instrument, but you may wish to specify a
 # serial number or model number for a safer experience
-daq = NIDAQmxInstrument()
+daq = NIDAQmxInstrument(device_name='Dev1')
 
 print(daq)
 
@@ -29,9 +29,9 @@ print(f'daq.ai0.value: {daq.ai0.value:.3f}V')
 # for more nuanced control over the analog
 # input, we could use the `capture` method
 values = daq.ai0.capture(
-    sample_count=10, rate=100,
+    sample_count=10, rate=1000,
     max_voltage=10.0, min_voltage=-10.0,
-    mode='differential', timeout=3.0
+    mode='single-ended referenced', timeout=3.0
 )
 print(f'values: {values} V')
 
@@ -40,7 +40,7 @@ print(f'values: {values} V')
 
 # if you already know your device name, you might be
 # happier going straight to the `AnalogInput` constructor:
-ai0 = AnalogInput(device='Dev1', analog_input='ai0')
+ai0 = AnalogInput(device='Dev1', analog_input='ai0',mode='single-ended referenced')
 
 # we can do anything that we could have
 # done previously with the daq.aiX
